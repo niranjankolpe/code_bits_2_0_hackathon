@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class signin extends StatefulWidget {
   const signin({super.key});
@@ -171,6 +170,7 @@ class _signinState extends State<signin> {
                   ),
                   TextButton(
                     onPressed: () {
+                      Navigator.pop(context);
                       Navigator.pushNamed(context, 'signup');
                     },
                     child: Text(
@@ -441,6 +441,7 @@ class _signupState extends State<signup> {
                   ),
                   TextButton(
                     onPressed: () {
+                      Navigator.pop(context);
                       Navigator.pushNamed(context, 'signin');
                     },
                     child: Text(
