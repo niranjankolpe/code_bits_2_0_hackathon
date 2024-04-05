@@ -414,27 +414,8 @@ class _signupState extends State<signup> {
 
                                 AuthService authService = AuthService();
 
-                                // authService.signup(
-                                //     context: context,
-                                //     email: emailController.text,
-                                //     name: nameController.text,
-                                //     pass: passwordController.text
-                                // );
                                 authService.emailavailable(context: context, email: emailController.text);
-                                // int check = 0;
-                                // rescode.then((value) => check= value);
-                                // print(check);
-                                // if ( rescode == 200){
-                                //   Navigator.pushNamed(context, "emailotp");
-                                // }
-                                // else{
-                                //   setState(() {
-                                //     emailController.text = "";
-                                //     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                //       content: Text("Use another email to register"),
-                                //     ));
-                                //   });
-                                // }
+
                               }
                               else{
                                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

@@ -1,6 +1,7 @@
-import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:personalized_development_recommendor/utils/variables.dart';
+
 import 'package:http/http.dart' as http;
 
 class AuthService{
@@ -12,7 +13,7 @@ class AuthService{
   })async {
     try {
       http.Response res = await http.get(
-        Uri.parse('http://10.0.2.2:8000/recommend_data/$email/$name/$pass'),);
+        Uri.parse('http://niranjankolpe.pythonanywhere.com/recommend_data/$email/$name/$pass'),);
       print("status code is " + res.statusCode.toString());
 
     } catch (e) {
@@ -26,14 +27,17 @@ class AuthService{
   })async {
     try {
       http.Response res = await http.get(
-        Uri.parse('http://10.0.2.2:8000/emailavailable/$email'),);
+        Uri.parse('http://niranjankolpe.pythonanywhere.com/emailavailable/$email'),);
       print("status code is " + res.statusCode.toString());
       if (res.statusCode.toString() == "200"){
+        variables.email = email;
+
         Navigator.pushNamed(context, "emailotp");}
       else{
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text("Use another email to register"),
         ));
+        Navigator.pop(context);
         Navigator.pushNamed(context, "signup");
       }
 
@@ -42,10 +46,6 @@ class AuthService{
 
     }
   }
-
-
-
-
 
 
 

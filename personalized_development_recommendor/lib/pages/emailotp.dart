@@ -1,4 +1,6 @@
+import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
+import 'package:personalized_development_recommendor/provider/authservice.dart';
 import 'package:personalized_development_recommendor/utils/variables.dart';
 
 class emailotp extends StatefulWidget {
@@ -10,16 +12,31 @@ class emailotp extends StatefulWidget {
 
 class _emailotpState extends State<emailotp> {
   bool ObscureText = true;
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  // final AuthService authService = AuthService();
+  final TextEditingController otpController = TextEditingController();
+  EmailOTP myAuth = EmailOTP();
 
-  // void loginUser() {
-  //   authService.signInUser(
-  //       context: context,
-  //       email: emailController.text,
-  //       password: passwordController.text);
-  // }
+  sendotp()async{
+    myAuth.setConfig(
+        appEmail: "kundanjadhav2001@gamil.com",
+        appName: "Bit Bandits",
+        userEmail: variables.email,
+        otpLength: 6,
+        otpType: OTPType.digitsOnly
+    );
+    myAuth.sendOTP();
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text("OTP sent to your mail"),
+    ));
+  }
+
+  verifyotp(){
+    if (myAuth.verifyOTP(otp: otpController.text)){
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("OTP verified")));
+      Navigator.pop(context);
+      Navigator.pushNamed(context, "home");
+    }
+    else{ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Wrong OTP. Check again.")));}
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +109,7 @@ class _emailotpState extends State<emailotp> {
                           ],
                         ),
                         TextField(
-                          controller: passwordController,
+                          controller: otpController,
                           style: TextStyle(fontSize: 14),
                           textAlignVertical: TextAlignVertical.center,
                           obscureText: ObscureText,
@@ -100,7 +117,7 @@ class _emailotpState extends State<emailotp> {
                             contentPadding: EdgeInsets.only(left: 20, right: 20),
                             fillColor: Colors.white,
                             filled: true,
-                            hintText: "Enter 4 digit otp",
+                            hintText: "Enter 6 digit otp",
                             suffixIcon: IconButton(
                               onPressed: (){
                                 setState(() {
@@ -124,9 +141,32 @@ class _emailotpState extends State<emailotp> {
                         SizedBox(
                           height: 20,
                         ),
+
                         TextButton(
                             onPressed: () {
-                              // loginUser();
+                              sendotp();
+                            },
+                            style: ButtonStyle(
+                              padding: MaterialStateProperty.all<EdgeInsets>(
+                                  EdgeInsets.only(right: 10, left: 10)),
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Theme.of(context).colorScheme.background),
+                            ),
+                            child: Text(
+                              "Send OTP",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                        SizedBox(
+                          height: 20,
+                        ),
+
+                        TextButton(
+                            onPressed: () {
+                              verifyotp();
                             },
                             style: ButtonStyle(
                               padding: MaterialStateProperty.all<EdgeInsets>(
@@ -135,7 +175,7 @@ class _emailotpState extends State<emailotp> {
                                   Theme.of(context).colorScheme.background),
                             ),
                             child: Text(
-                              "Login",
+                              "Verify",
                               style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 20,
@@ -143,30 +183,6 @@ class _emailotpState extends State<emailotp> {
                               ),
                             )),
                       ])),
-                  SizedBox(
-                    height: 90,
-                  ),
-                  Text(
-                    "Don't have account?",
-                    style: TextStyle(fontSize: 18, color: Theme.of(context).primaryColor),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.pushNamed(context, 'signup');
-                    },
-                    child: Text(
-                      "  Create Account  ",
-                      style: TextStyle(fontSize: 20, color: Theme.of(context).colorScheme.background),
-                    ),
-                    style: ButtonStyle(
-                      backgroundColor:
-                      MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.secondary),
-                    ),
-                  ),
                   const SizedBox(
                     height: 300,
                   ),
