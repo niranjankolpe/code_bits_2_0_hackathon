@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../provider/authservice.dart';
+import 'package:personalized_development_recommendor/utils/variables.dart';
 
 class signin extends StatefulWidget {
   const signin({super.key});
@@ -191,6 +193,9 @@ class _signinState extends State<signin> {
   }
 }
 
+
+
+
 class signup extends StatefulWidget {
   const signup({super.key});
 
@@ -200,6 +205,7 @@ class signup extends StatefulWidget {
 
 class _signupState extends State<signup> {
   bool ObscureText = true;
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confpasswordController = TextEditingController();
@@ -271,7 +277,7 @@ class _signupState extends State<signup> {
                           ],
                         ),
                         TextField(
-                          controller: emailController,
+                          controller: nameController,
                           style: TextStyle(fontSize: 14),
                           textAlignVertical: TextAlignVertical.center,
                           decoration: InputDecoration(
@@ -403,10 +409,32 @@ class _signupState extends State<signup> {
                           height: 20,
                         ),
                         TextButton(
-                            onPressed: () {
+                            onPressed: (){
                               if (passwordController.text != '' && passwordController.text == confpasswordController.text){
-                                // authService.CheckEmailAvailable(context: context,email);
-                                print("Passwords match");
+
+                                AuthService authService = AuthService();
+
+                                // authService.signup(
+                                //     context: context,
+                                //     email: emailController.text,
+                                //     name: nameController.text,
+                                //     pass: passwordController.text
+                                // );
+                                authService.emailavailable(context: context, email: emailController.text);
+                                // int check = 0;
+                                // rescode.then((value) => check= value);
+                                // print(check);
+                                // if ( rescode == 200){
+                                //   Navigator.pushNamed(context, "emailotp");
+                                // }
+                                // else{
+                                //   setState(() {
+                                //     emailController.text = "";
+                                //     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                //       content: Text("Use another email to register"),
+                                //     ));
+                                //   });
+                                // }
                               }
                               else{
                                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
