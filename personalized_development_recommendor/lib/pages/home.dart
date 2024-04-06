@@ -507,6 +507,7 @@ class _goalState extends State<goal> {
                   domain: fielddropdown,
                   course: coursedurationdropdown,
                   availabletime: availabletimedropdown);
+              Navigator.pushNamed(context, "weakness");
             },
             child: Text(
               "  Submit  ",
