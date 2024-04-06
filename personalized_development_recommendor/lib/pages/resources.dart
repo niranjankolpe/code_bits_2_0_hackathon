@@ -46,14 +46,16 @@ class _resourcesState extends State<resources> {
                   const SizedBox(
                     height: 50,
                   ),
-                  ListTile(
-                    title: Text("Python"),
-                  ),
-                  ListTile(
-                    title: Text("Machine Learning"),
-                  ),
+                  // ListTile(
+                  //   title: Text("Python"),
+                  // ),
+                  // ListTile(
+                  //   title: Text("Machine Learning"),
+                  // ),
+                  Image.asset("lib/images/Gemini AI Prompt 2 Part 1.png"),
+                  Image.asset("lib/images/Gemini AI Prompt 2 Part 2.png"),
 
-
+                  SizedBox(height: 20,),
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context);

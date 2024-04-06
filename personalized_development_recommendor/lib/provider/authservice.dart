@@ -107,7 +107,7 @@ class AuthService {
   goal({
     required BuildContext context,
     required String email,
-    required int domain,
+    required String domain,
     required int course,
     required int availabletime,
     }) async {
