@@ -1,0 +1,40 @@
+Code Bits 2.0 Hackathon
+
+Date: 05 April 2024
+
+Team Name: Bit Bandits
+
+Team Members:
+1. Niranjan Kolpe
+2. Saish Gondhalekar
+3. Kundan Jadhav
+
+Topic: Personalized Development Recommender
+
+Problem Statement: To build an Android App for providing users with personalized recommendations regarding their development in Technical and Non-Technical skills.
+
+Technologies:
+1. Android Studio
+2. Flutter
+
+Features:
+1. Provide Personalized Recommendations on user Strengths and Weaknesses.
+2. Generate report on improvements/degradations in Technical skills, Communication skills, etc.
+3. Generate Analytics and Visualizations for the data collected over time.
+
+Target Users:
+Computer Engineering Students and/or Computer Science related fields.
+
+Input:
+1. Student Profile - Financial Background, Average Daily Free Time, Learning Preferences
+2. Intersted Job Profiles List
+3. Goals List
+4. Programming Languages List
+5. Object Oriented Programming Concepts Level
+6. Data Structures and Algorithms Level
+7. Strengths and Weaknesses List
+
+Output:
+1. Personalized Recommendations on user Strengths and Weaknesses.
+2. Periodic Report on Technical skills, Communication skills, etc.
+3. Analytics and Visualizations for the data collected over time.
