@@ -383,19 +383,12 @@ class goal extends StatefulWidget {
 }
 
 class _goalState extends State<goal> {
-  int fielddropdown = 0;
+  String fielddropdown = "web developer";
   int coursedurationdropdown = 0;
   int availabletimedropdown = 0;
 
   @override
   Widget build(BuildContext context) {
-    var screensize = MediaQuery.of(context).size;
-    double containersize;
-    if (screensize.width > 800) {
-      containersize = (screensize.width) / 2;
-    } else {
-      containersize = 400;
-    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
@@ -435,16 +428,16 @@ class _goalState extends State<goal> {
                   )),
               DropdownButton(
                 value: fielddropdown,
-                onChanged: (int? newValue) {
+                onChanged: (String? newValue) {
                   setState(() {
                     fielddropdown = newValue!;
                   });
                 },
                 items:
-                    <int>[0, 1, 2, 3].map<DropdownMenuItem<int>>((int value) {
-                  return DropdownMenuItem<int>(
+                    <String>["web developer", "software developer","data science", "Tester"].map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
                     value: value,
-                    child: Text(value.toString()),
+                    child: Text(value),
                   );
                 }).toList(),
               )
