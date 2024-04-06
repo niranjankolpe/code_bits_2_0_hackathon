@@ -1,5 +1,6 @@
 import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:personalized_development_recommendor/provider/authservice.dart';
 import 'package:personalized_development_recommendor/utils/variables.dart';
 
@@ -30,10 +31,13 @@ class _emailotpState extends State<emailotp> {
   }
 
   verifyotp(){
+    AuthService authService = AuthService();
     if (myAuth.verifyOTP(otp: otpController.text)){
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("OTP verified")));
+      authService.signup(context: context, email: variables.email, name: variables.name, pass: variables.password);
+
       Navigator.pop(context);
-      Navigator.pushNamed(context, "home");
+      Navigator.pushNamed(context, "signin");
     }
     else{ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Wrong OTP. Check again.")));}
   }

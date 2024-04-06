@@ -13,14 +13,14 @@ class _signinState extends State<signin> {
   bool ObscureText = true;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  // final AuthService authService = AuthService();
+  final AuthService authService = AuthService();
 
-  // void loginUser() {
-  //   authService.signInUser(
-  //       context: context,
-  //       email: emailController.text,
-  //       password: passwordController.text);
-  // }
+  void loginUser() {
+    authService.signInUser(
+        context: context,
+        email: emailController.text,
+        password: passwordController.text);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +143,7 @@ class _signinState extends State<signin> {
                         ),
                         TextButton(
                             onPressed: () {
-                              // loginUser();
+                              loginUser();
                             },
                             style: ButtonStyle(
                               padding: MaterialStateProperty.all<EdgeInsets>(
@@ -209,15 +209,6 @@ class _signupState extends State<signup> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confpasswordController = TextEditingController();
-
-  // final AuthService authService = AuthService();
-
-  // void loginUser() {
-  //   authService.signInUser(
-  //       context: context,
-  //       email: emailController.text,
-  //       password: passwordController.text);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -413,7 +404,8 @@ class _signupState extends State<signup> {
                               if (passwordController.text != '' && passwordController.text == confpasswordController.text){
 
                                 AuthService authService = AuthService();
-
+                                variables.name = nameController.text;
+                                variables.password = passwordController.text;
                                 authService.emailavailable(context: context, email: emailController.text);
 
                               }
